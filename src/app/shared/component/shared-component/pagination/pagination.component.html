@@ -1,0 +1,35 @@
+<div class='pagination'>
+
+  <ng-container *ngIf="prevPageNumber > 0">
+    <ng-container *ngIf="entriesSize > 0">
+      <button class='changes-option prev' [style.cursor]="'pointer'" (click)="previous({updated_min: this.firstEntryDate, entry_id: this.firstEntryId, page: prevPageNumber})">
+        <span class="fa fa-angle-double-left"></span> Previous
+      </button>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="entriesSize == 0">
+    <ng-container *ngIf="prevPageNumber > 0">
+      <button class='changes-option prev' [style.cursor]="'pointer'"
+        (click)="previous({updated_min: this.firstEntryDate, entry_id: this.firstEntryId, page: prevPageNumber})">
+        <span class="fa fa-angle-double-left"></span> Previous
+      </button>
+    </ng-container>
+
+    <ng-container *ngIf="prevPageNumber == 0">
+      <p class="center"> 
+        <a class='changes-option prev' [routerLink]="['/']"> 
+          <span class="fa fa-home"></span> Home
+        </a>
+      </p>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="totalCount == 10">
+      <button class='changes-option prev' [style.cursor]="'pointer'"
+        (click)="next({updated_min: this.lastEntryDate, entry_id: this.lastEntryId, page: nextPageNumber})">
+        <span class="fa fa-angle-double-right"></span> Next
+      </button>
+  </ng-container>
+
+</div>

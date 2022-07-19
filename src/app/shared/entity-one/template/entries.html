@@ -1,0 +1,72 @@
+<h2 class="bold"> List of {{entityTitles}} </h2>
+
+<div class="entries-options">
+  <app-search-option [searchCriteria] ="searchCriteria" (searchQuery)= "onSearch($event)" (clearResult)="clearRes($event)"></app-search-option>
+  <app-delete-option *ngIf ="!isLoading" [entries]="$entries" (itemsReadyToDelete)="processDelete()" [deleteMessage]="currentDeleteStatus">
+  </app-delete-option>
+  <ng-container *ngIf="$entries.length > 0">
+    <app-pagination [entriesSize]="$entries.length" [fDate]="firstEntryDate" [fId]="firstEntryId"
+      [lDate]="lastEntryDate" [lId]="lastEntryId" [tCount]="totalCount" [nextPageNumber] ="nextPageNumber" [prevPageNumber] ="prevPageNumber" (pageNavigation) ="pageNavigation($event)" ></app-pagination>
+  </ng-container>
+</div>
+
+<ng-container *ngIf="!isLoading && $entries.length > 0">
+
+  <table id="entries" class="entries">
+
+    <div class="clear"></div>
+
+    <colgroup>
+      <col />
+      <col />
+      <col />
+      <col />
+    </colgroup>
+
+    <thead>
+      <tr>
+        <th class="center">S/N</th>
+        <th class="left">Name</th>
+        <th class="center">Created On</th>
+        <th class="center">Updated On</th>
+        <th class="center">Changes</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <ng-container *ngFor="let $entry of $entries; index as i; trackBy:trackByItems">
+
+        <tr>
+          <td class="center">{{i + 1}}</td>
+          <td [title]="$entry.$title"><a routerLink="../detail/{{$entry.$id}}">{{$entry.$title}}</a></td>
+          <td class="center">{{$entry.$createdOn | date:'fullDate'}} </td>
+          <td class="center">{{$entry.$updatedOn | date:'fullDate'}} </td>
+          <app-changes-menu [entryId]="$entry.$id" [deleteList]="getItemDeleteList()"></app-changes-menu>
+        </tr>
+
+
+      </ng-container>
+    </tbody>
+
+  </table>
+
+</ng-container>
+
+
+  <app-no-entries *ngIf ="!isLoading && $entries.length < 1"></app-no-entries>
+
+  <ng-container *ngIf="isLoading">
+    <p> <b>Loading results...Please wait</b>
+    </p>
+  </ng-container>
+
+<div class="entries-options">
+  <app-delete-option *ngIf ="!isLoading" [entries]="$entries" (itemsReadyToDelete)="processDelete()"></app-delete-option>
+  <ng-container *ngIf="$entries.length > 0">
+    <app-pagination [entriesSize]="$entries.length" [fDate]="firstEntryDate" [fId]="firstEntryId" [lDate]="lastEntryDate"
+      [lId]="lastEntryId" [tCount]="totalCount" [nextPageNumber]="nextPageNumber" [prevPageNumber]="prevPageNumber"
+      (pageNavigation)="pageNavigation($event)"></app-pagination>
+  </ng-container>
+</div>
+
+<div class="clear"></div>

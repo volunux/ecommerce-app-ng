@@ -1,0 +1,11 @@
+<td class="tr-changes-menu center">
+  <a routerLink="../detail/{{id}}" class="btn-navy"> <span class="fa fa-eye"></span> Read</a>
+  <a routerLink="../update/{{id}}" class="btn-aqua"><span class="fa fa-pencil"></span> Update</a>
+  <a routerLink="../delete/{{id}}" class="btn-red"> <span class="fa fa-trash"></span> Delete</a>
+
+  <label class="cust-checkbox-container">
+    <input type="checkbox" value='{{id}}' name="entry_item" required="required" (change)="itemSelected(checked.checked, id)" #checked>
+    <span class="checkmark"></span>
+  </label>
+
+</td>

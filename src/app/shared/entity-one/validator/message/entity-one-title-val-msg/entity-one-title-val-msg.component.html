@@ -1,0 +1,7 @@
+<ng-container *ngIf="title && title?.invalid && (title?.dirty || title?.touched)">
+  <div class="errors">
+    <small *ngIf="title?.errors?.['required']">Title is required</small>
+    <small *ngIf="title?.errors?.['minlength']">Title should be at least {{title.errors?.['minlength'].requiredLength}} characters long</small>
+    <small *ngIf="title?.errors?.['maxlength']">Title should not be more than {{title.errors?.['maxlength'].requiredLength}} characters long</small>
+  </div>
+</ng-container>

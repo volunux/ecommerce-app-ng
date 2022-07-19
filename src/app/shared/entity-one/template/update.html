@@ -1,0 +1,34 @@
+<ng-container *ngIf="$entry; else noEntryUpdateDelete">
+
+  <div id="entry-update">
+
+    <h2 class="bold"> {{entityTitle}} </h2>
+
+    <form [formGroup]="entityForm" (ngSubmit)="onUpdateEntity(entityForm.value)">
+      <app-validation-error [errors]="errMsgObj" [errMsgSingle]="errMsgSingle"></app-validation-error>
+
+      <fieldset class="form-group wide">
+        <app-entity-one-id [entityForm]="entityForm" [isCtrlDisabled]="isControlDisabled"></app-entity-one-id>
+      </fieldset>
+      <fieldset class="form-group wide">
+        <app-entity-one-title [entityForm]="entityForm" [isCtrlDisabled]="isControlDisabled"></app-entity-one-title>
+      </fieldset>
+      <fieldset class="form-group wide">
+        <app-entity-one-description [entityForm]="entityForm" [isCtrlDisabled]="isControlDisabled">
+        </app-entity-one-description>
+      </fieldset>
+      <div class="clear"></div>
+
+      <div class="form-group">
+        <button type="submit" class="form-btn-submit btn-blue" [disabled] ="!entityForm.valid"> Submit {{entityForm.valid}} </button>
+      </div>
+
+    </form>
+
+  </div>
+
+</ng-container>
+
+<ng-template #noEntryUpdateDelete>
+  <app-no-entry-update-delete [entityTitle]="entityTitle" [entry]="$entry"></app-no-entry-update-delete>
+</ng-template>

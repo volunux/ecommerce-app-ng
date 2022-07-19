@@ -1,0 +1,41 @@
+<ng-container *ngIf="$entry; else noEntryDetail">
+  <h2 class="bold"> {{entityTitle}} </h2>
+
+  <div id="table-curves">
+    <table id='entry-detail'>
+      <colgroup>
+        <col class='parameter' />
+        <col class='prop-data' />
+      </colgroup>
+
+      <tbody>
+
+        <tr>
+          <th>Name </th>
+          <td> {{$entry.$title}} </td>
+        </tr>
+
+        <tr>
+          <th> Description </th>
+          <td> {{$entry.$description}} </td>
+        </tr>
+
+        <tr>
+          <th> Created On </th>
+          <td> {{$entry.$createdOn | date: 'fullDate'}} </td>
+        </tr>
+
+        <tr>
+          <th> Updated On </th>
+          <td> {{$entry.$updatedOn | date: 'fullDate'}} </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</ng-container>
+
+<ng-template #noEntryDetail>
+  <app-no-entry-detail [entityTitle]="entityTitle" [entry]="$entry"></app-no-entry-detail>
+</ng-template>

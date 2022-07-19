@@ -1,0 +1,12 @@
+<ng-container *ngIf ="errors">
+      <div class="errors-list" *ngIf ="errMsgList.length > 0">
+        <h3> Errors found during form validation : </h3>
+        <ul>
+          <li *ngFor ="let errMsg of errMsgList">{{errMsg}}</li>      
+        </ul>
+      </div>
+</ng-container>
+
+<ng-container *ngIf ="errMsgSingle">
+  <p>{{errMsgSingle}}</p>
+</ng-container>

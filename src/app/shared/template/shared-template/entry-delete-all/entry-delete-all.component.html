@@ -1,0 +1,19 @@
+<h2 class="bold"> {{entityTitle}} </h2>
+
+<ng-container *ngIf ="entriesAvailable; else noEntries">
+
+<p>All entries if the button is pressed will result in total deletion from the system or registry. It is advised you review your decision before proceeding as the action will remove all entry from the system.</p>
+
+  <button type="submit" class="form-btn-submit btn-red" (click) ="deleteAll()" > Submit </button>
+
+<div class="clear"></div>
+
+</ng-container>
+
+<ng-template #noEntries>
+
+  <div class='entries'>  
+   <p> All Entries do not exists in the record and cannot be retrieved. This is as a result of no entries existing for this domain or your query is insufficient to return any result from the record.</p>
+  </div>
+
+</ng-template>

@@ -1,0 +1,7 @@
+<ng-container *ngIf="description && description?.invalid && (description?.dirty || description?.touched)">
+  <div class="errors">
+    <small *ngIf="description?.errors?.['required']">Description is required</small>
+    <small *ngIf="description?.errors?.['minlength']">Description should be at least {{description.errors?.['minlength'].requiredLength}} characters long</small>
+    <small *ngIf="description?.errors?.['maxlength']">Description should not be more than {{description.errors?.['maxlength'].requiredLength}} characters long</small>
+  </div>
+</ng-container>

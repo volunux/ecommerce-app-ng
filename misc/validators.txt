@@ -1,0 +1,22 @@
+isOldEnough(control: Control) {
+// if there is no value
+if (!control.value) {
+return null;
+}
+let birthDatePlus18 = new Date(control.value);
+birthDatePlus18.setFullYear(birthDatePlus18.getFullYear() + 18);
+return birthDatePlus18 < new Date() ? null : {tooYoung: true};
+}
+
+
+@Directive({
+selector: '[isOldEnough]',
+bindings: [provide(NG_VALIDATORS, {useExisting: IsOldEnoughValidator, multi: true})]
+})
+export class IsOldEnoughValidator implements Validator {
+validate(control: Control): any {
+let birthDatePlus18 = new Date(control.value);
+birthDatePlus18.setFullYear(birthDatePlus18.getFullYear() + 18);
+return birthDatePlus18 < new Date() ? null : {tooYoung: true};
+}
+}

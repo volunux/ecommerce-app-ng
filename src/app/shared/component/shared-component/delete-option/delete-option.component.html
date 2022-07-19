@@ -1,0 +1,8 @@
+<ng-container *ngIf="entries.length > 0">
+  <div class="delete-menu"> 
+    <button class="changes-option delete-option" (click) ="processDelete()" > Delete </button> 
+    <ng-container *ngIf="deleteMessage">
+      <span class="entries-delete-status" [ngStyle] ="{'color': deleteMessage.color, 'paddingLeft': '5px'}" [textContent] ="deleteMessage.message"> </span>
+    </ng-container>
+  </div>
+</ng-container>

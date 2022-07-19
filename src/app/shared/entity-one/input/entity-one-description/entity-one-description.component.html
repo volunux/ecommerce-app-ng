@@ -1,0 +1,6 @@
+
+<ng-container *ngIf="entityForm" [formGroup] ="entityForm">
+  <label for="description" class="form-label">Description</label>
+  <input type="text" class="form-control" id="description" formControlName="description" [readonly]="isCtrlDisabled">
+  <app-entity-one-description-val-msg [description]="description"></app-entity-one-description-val-msg>
+</ng-container>
